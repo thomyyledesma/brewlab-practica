@@ -1,0 +1,36 @@
+<h1>Catalogo de productos</h1>
+<small>Explora los metodos de preparacion y compara sus caracteristicas</small>
+
+<div class="filters">
+    <div class="catFilter">
+        <label for="category">Filtrar por categoria</label>
+        <select id="category" #categorySelect [value]="categoryFilter()"
+            (change)="categoryFilter.set(categorySelect.value)">
+            <option value="">Todas las categoria</option>
+            @for (c of categories; track $index) {
+            <option [value]="c">{{ c }}</option>
+            }
+        </select>
+    </div>
+
+    <div class="sortFilter">
+        <label for="sort">Ordenar por precio</label>
+        <select id="sort" #sortSelect [value]="sortOrder()" (change)="sortOrder.set(sortSelect.value)">
+            <option value="asc">Menor a Mayor</option>
+            <option value="desc">Mayor a Menor</option>
+            <option value="">Sin ordenar</option>
+        </select>
+    </div>
+</div>
+
+<p>Cantidad de dispositivos: {{ deviceAmount() }}</p>
+
+<ul>
+    @for(d of filteredDevices(); track d.id){
+    <li>
+        <app-device-card [device]="d" (navigationRequest)="router.navigate(['/devices', d.id])"></app-device-card>
+    </li>
+    }@empty {
+    <li>No hay dispositivos para mostrar...</li>
+    }
+</ul>

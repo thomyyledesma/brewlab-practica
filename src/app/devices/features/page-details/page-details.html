@@ -1,0 +1,62 @@
+@let d = device();
+
+@if(d){
+<button type="button" (click)="router.navigate(['/devices'])">Volver al catalogo</button>
+
+<small>{{d.brand}}</small>
+<h2>{{d.modelName}}</h2>
+<p>{{d.category}} - {{d.material}}</p>
+<p>{{d.salePrice.toLocaleString()}} ARS</p>
+<small>{{d.isInStore ? 'Disponible' : 'Sin stock'}}</small>
+
+<div class="boxes">
+    <div class="box">
+        <p>marca</p>
+        <p>{{d.brand}}</p>
+    </div>
+
+    <div class="box">
+        <p>material</p>
+        <p>{{d.material}}</p>
+    </div>
+
+    <div class="box">
+        <p>disponibilidad</p>
+        <p>{{d.isInStore ? 'Disponible' : 'Sin stock'}}</p>
+    </div>
+</div>
+
+<div class="panelButtons">
+    <button type="button" (click)="showPanel.set('notes')">Descripcion del metodo</button>
+    <button type="button" (click)="showPanel.set('cupProfile')">Perfil de taza</button>
+</div>
+
+
+@if(showPanel() === 'notes'){
+<h3>Descripcion</h3>
+<p>{{d.notes}}</p>
+}@else {
+<h3>Perfil de taza</h3>
+<p>{{d.cupProfile}}</p>
+}
+
+<div class="formButtons">
+    <button type="button" (click)="isEditing.update((v) => !v)">
+        @if(!isEditing()){
+        Editar
+        }@else {
+        Cancelar
+        }
+    </button>
+
+    <button type="button" (click)="onDelete()">Eliminar</button>
+</div>
+
+@if(isEditing()){
+<app-page-form [editingDevice]="d" (editedDevice)="onEdit($event)"></app-page-form>
+}
+
+}@else{
+<p>No se encontro el dispositivo.</p>
+<button type="button" (click)="router.navigate(['/devices'])">Volver al catalogo</button>
+}

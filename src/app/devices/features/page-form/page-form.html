@@ -1,0 +1,77 @@
+<h2>{{ isEditing() ? 'Editando dispositivo' : 'Agregando dispositivo' }}</h2>
+<p>{{ isEditing() ? 'Modifica ' : 'Completa ' }}los datos</p>
+
+<form [formRoot]="deviceForm">
+    <div class="grid">
+        <div class="control">
+            <label for="modelName">Nombre</label>
+            <input type="text" id="modelName" [formField]="deviceForm.modelName">
+            @if(deviceForm.modelName().invalid() && deviceForm.modelName().touched()){
+            <span class="errors">{{ deviceForm.modelName().errors()[0].message }}</span>
+            }
+        </div>
+
+        <div class="control">
+            <label for="brand">Marca</label>
+            <input type="text" id="brand" [formField]="deviceForm.brand">
+            @if(deviceForm.brand().invalid() && deviceForm.brand().touched()){
+            <span class="errors">{{ deviceForm.brand().errors()[0].message }}</span>
+            }
+        </div>
+
+        <div class="control">
+            <label for="category">Categoria</label>
+            <select id="category" [formField]="deviceForm.category">
+                <option value="">Selecciona una categoria</option>
+                @for (c of categories; track $index) {
+                <option [value]="c">{{ c }}</option>
+                }
+            </select>
+            @if(deviceForm.category().invalid() && deviceForm.category().touched()){
+            <span class="errors">{{ deviceForm.category().errors()[0].message }}</span>
+            }
+        </div>
+
+        <div class="control">
+            <label for="material">Material</label>
+            <input type="text" id="material" [formField]="deviceForm.material">
+            @if(deviceForm.material().invalid() && deviceForm.material().touched()){
+            <span class="errors">{{ deviceForm.material().errors()[0].message }}</span>
+            }
+        </div>
+
+        <div class="control">
+            <label for="salePrice">Precio</label>
+            <input type="number" id="salePrice" [formField]="deviceForm.salePrice">
+            @if(deviceForm.salePrice().invalid() && (deviceForm.salePrice().touched() ||
+            deviceForm.salePrice().dirty())){
+            <span class="errors">{{ deviceForm.salePrice().errors()[0].message }}</span>
+            }
+        </div>
+
+        <div class="control">
+            <label for="isInStore">Disponibilidad</label>
+            <input type="checkbox" id="isInStore" [formField]="deviceForm.isInStore">
+        </div>
+
+        <div class="control">
+            <label for="notes">Descripcion</label>
+            <textarea id="notes" [formField]="deviceForm.notes" rows="4"></textarea>
+            @if(deviceForm.notes().invalid() && deviceForm.notes().touched()){
+            <span class="errors">{{ deviceForm.notes().errors()[0].message }}</span>
+            }
+        </div>
+
+        <div class="control">
+            <label for="cupProfile">Perfil de taza</label>
+            <textarea id="cupProfile" [formField]="deviceForm.cupProfile" rows="4"></textarea>
+            @if(deviceForm.cupProfile().invalid() && deviceForm.cupProfile().touched()){
+            <span class="errors">{{ deviceForm.cupProfile().errors()[0].message }}</span>
+            }
+        </div>
+    </div>
+
+    <button type="submit">Enviar</button>
+    <button type="button" (click)="formReset()">Borrar</button>
+
+</form>

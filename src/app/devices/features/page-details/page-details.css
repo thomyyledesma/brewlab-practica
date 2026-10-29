@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+button {
+  max-width: 25%;
+  padding: 0.5rem;
+  background-color: var(--boton-principal-hover);
+  color: var(--texto-detalles);
+  border-color: var(--fondo-principal);
+  cursor: pointer;
+}
+
+.boxes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  border-top: 1px solid var(--fondo-header-oscuro);
+}
+
+.box {
+  background-color: var(--fondo-detalles-info);
+  color: var(--texto-detalles-secundario);
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.panelButtons {
+  display: flex;
+  gap: 0.5rem;
+
+  border-bottom: 1px solid var(--fondo-header-oscuro);
+}
+
+.formButtons {
+  display: flex;
+  gap: 0.5rem;
+  border-top: 1px solid var(--fondo-header-oscuro);
+}

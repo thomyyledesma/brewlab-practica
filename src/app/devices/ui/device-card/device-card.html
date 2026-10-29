@@ -1,0 +1,8 @@
+@let d = device();
+
+<small>{{ d.category }}</small>
+<h3>{{ d.modelName }}</h3>
+<small>{{ d.brand }}</small>
+<p>{{ d.salePrice.toLocaleString() }} ARS</p>
+<small>{{ d.isInStore ? 'Disponible' : 'Sin stock' }}</small>
+<button (click)="navigationRequest.emit()">Ver detalles</button>
